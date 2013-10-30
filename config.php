@@ -14,7 +14,7 @@ if($TV->ext == '.mp4') {
 				    file: "http://video.ukm.no/'.$TV->file.'"
 				}]';
 } else {
-	$sources = 'file: "http://212.125.231.33/'.$TV->file.'"';
+	$sources = 'file: "http://video.ukm.no/'.$TV->file.'"';
 }
 ?>
 var jwp_height = 562;
