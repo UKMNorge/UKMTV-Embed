@@ -6,16 +6,18 @@ $TV->size();
 $TV->videofile();
 
 if($TV->ext == '.mp4') {
-	$sources = 'sources: [{
-				    file: "rtmp://212.125.231.33/ukmtv/_definst_/mp4:'.$TV->file.'",
-				    label: "720p"
+	$sources = 'sources: ['
+			.  '{
+				    file: "rtmp://212.125.231.33/ukmtv/_definst_/mp4:'.$TV->file_mobile.'",
+				    label: "Mobil"
 				},{
-				    file: "http://212.125.231.33/ukmtv/_definst_/'.$TV->file.'/playlist.m3u8",
-				    label: "720p"
+				    file: "rtmp://212.125.231.33/ukmtv/_definst_/mp4:'.$TV->file_mobile.'",
+				    label: "HD"
 				},{
 				    file: "http://video.ukm.no/'.$TV->file.'",
 				    label: "720p"
-				}]';
+				}'
+			.']';
 } else {
 	$sources = 'file: "http://video.ukm.no/'.$TV->file.'"';
 }
