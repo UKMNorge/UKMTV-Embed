@@ -28,11 +28,13 @@ jQuery(document).ready(function(){
 		jwplayer('my-video').resize('100%', jwp_calc_height());
 	});
 	jwplayer('my-video').setup({
-	    <?= $sources ?>,
+	    playlist: [{
+	    		image: '<?= $TV->image_url ?>',
+	    		<?= $sources ?> }],
 		primary: 'flash',
 		<?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 		title: 'Spill av',
-	    image: '<?= $TV->image_url ?>',
+
 	    width: '100%',
 	    height: jwp_calc_height(),
 	    startparam: "starttime",
