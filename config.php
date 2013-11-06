@@ -6,7 +6,7 @@ $TV->size();
 $TV->videofile();
 
 if($TV->ext == '.mp4') {
-	$sources = 'sources: ['
+	$sources = 'levels: ['
 			.  '{
 				    file: "rtmp://212.125.231.33/ukmtv/_definst_/mp4:'.$TV->file_mobile.'",
 				    label: "Mobil"
@@ -28,13 +28,11 @@ jQuery(document).ready(function(){
 		jwplayer('my-video').resize('100%', jwp_calc_height());
 	});
 	jwplayer('my-video').setup({
-	    playlist: [{
-	    		image: '<?= $TV->image_url ?>',
-	    		<?= $sources ?> }],
+	    <?= $sources ?>,
 		primary: 'flash',
 		<?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 		title: 'Spill av',
-
+	    image: '<?= $TV->image_url ?>',
 	    width: '100%',
 	    height: jwp_calc_height(),
 	    startparam: "starttime",
