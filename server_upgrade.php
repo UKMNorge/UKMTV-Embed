@@ -16,3 +16,4 @@ html {
 
 <h1>UKM-TV ikke tilgjengelig</h1>
 <p>Grunnet serveroppgradering er UKM-TV utilgjengelig mandag 13.01 - torsdag 16.01</p>
+<?php die(); ?>
