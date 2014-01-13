@@ -1,4 +1,7 @@
 <?php
+
+require_once('server_upgrade.php');
+
 require_once('UKM/innslag.class.php');
 require_once('UKM/monstring.class.php');
 
