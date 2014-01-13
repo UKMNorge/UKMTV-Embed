@@ -5,7 +5,7 @@
 <style>
 body,
 html {
-	background: #000;
+	background: #fff;
 	overflow: hidden;
 	padding: 0;
 	margin: 0;
