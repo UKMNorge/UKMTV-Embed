@@ -5,6 +5,12 @@ $TV->play();
 $TV->size();
 $TV->videofile();
 
+if( $_SERVER['REMOTE_ADDR'] == '81.0.146.162' ) {
+	$storageIP = 'storageIP'.$TV->activeStorage;
+	
+	var_dump( $TV->$storageIP );
+}
+
 if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
 				    file: "rtmp://212.125.231.33/ukmtv/_definst_/mp4:'.$TV->file.'"
