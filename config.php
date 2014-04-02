@@ -5,22 +5,20 @@ $TV->play();
 $TV->size();
 $TV->videofile();
 
-if( $_SERVER['REMOTE_ADDR'] == '81.0.146.162' ) {
-	$storageIP = 'storageIP'.$TV->activeStorage;
-	
-	var_dump( $TV->$storageIP );
-}
+// Calculate current storage IP based on active storage server
+$storageIP = 'storageIP'.$TV->activeStorage;
+$storageURL= 'storageurl'. $TV->activeStorage;
 
 if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
-				    file: "rtmp://212.125.231.33/ukmtv/_definst_/mp4:'.$TV->file.'"
+				    file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
 				},{
-				    file: "http://212.125.231.33/ukmtv/_definst_/'.$TV->file.'/playlist.m3u8"
+				    file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/'.$TV->file.'/playlist.m3u8"
 				},{
-				    file: "http://video.ukm.no/'.$TV->file.'"
+				    file: "'.$TV->$storageURL.$TV->file.'"
 				}]';
 } else {
-	$sources = 'file: "http://video.ukm.no/'.$TV->file.'"';
+	$sources = 'file: "'.$TV->$storageURL.$TV->file.'"';
 }
 ?>
 var jwp_height = 562;
