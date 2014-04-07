@@ -9,15 +9,7 @@ $TV->videofile();
 $storageIP = 'storageIP'.$TV->activeStorage;
 $storageURL= 'storageurl'. $TV->activeStorage;
 
-if($TV->ext == '.mp4' && $TV->activeStorage  == '2') {
-		$sources = 'sources: [{
-					    file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.str_replace('720p','mobile', $TV->file).'"
-					},{
-					    file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/'.str_replace('720p','mobile', $TV->file).'/playlist.m3u8"
-					},{
-					    file: "'.$TV->$storageURL.str_replace('720p','mobile', $TV->file).'"
-					}]';
-	} else if($TV->ext == '.mp4') {
+if($TV->ext == '.mp4') {
 		$sources = 'sources: [{
 					    file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
 					},{
