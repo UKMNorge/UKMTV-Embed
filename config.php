@@ -18,7 +18,7 @@ if($TV->ext == '.mp4') {
 					},{
 					    file: "'.$TV->$storageURL.str_replace('720p','mobile', $TV->file).'"
 					}]';
-	} else {
+	} if($TV->activeStorage  != '2') {
 		$sources = 'sources: [{
 					    file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
 					},{
