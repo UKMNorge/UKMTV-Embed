@@ -11,10 +11,11 @@ $storageURL= 'storageurl'. $TV->activeStorage;
 
 if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
 	$sources = 'sources: [{
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
-				},{
 				file: "rtmp:://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
 				},{
+				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
+				},{
+
 				file: "'.$TV->$storageURL.$TV->file.'"
 				}]';
 } else if($TV->ext == '.mp4') {
