@@ -40,7 +40,7 @@ jQuery(document).ready(function(){
 	});
 	jwplayer('my-video').setup({
 	    <?= $sources ?>,
-		primary: 'html5',
+		primary: 'flash',
 		<?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 		title: 'Spill av',
 	    image: '<?= $TV->image_url ?>',
