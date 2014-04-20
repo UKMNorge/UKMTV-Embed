@@ -11,14 +11,13 @@ $storageURL= 'storageurl'. $TV->activeStorage;
 
 if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
 	$sources = 'sources: [{
-
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
-				},{
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
+				file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
 				},{
 				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
 				},{
-				file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
+				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
+				},{
+				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
 				},{
 				file: "'.$TV->$storageURL.$TV->file.'"
 				}]';
@@ -41,7 +40,7 @@ jQuery(document).ready(function(){
 	});
 	jwplayer('my-video').setup({
 	    <?= $sources ?>,
-		primary: 'flash',
+		primary: 'html5',
 		<?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 		title: 'Spill av',
 	    image: '<?= $TV->image_url ?>',
