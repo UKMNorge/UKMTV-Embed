@@ -23,9 +23,9 @@ if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
 				}]';
 } else if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
-				file: "rtmp://81.0.146.165/ukmtv2/_definst_/mp4:'.$TV->file.'"
+				file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
 				},{
-				file: "http://81.0.146.165/ukmtv2/_definst_/'.$TV->file.'/playlist.m3u8"
+				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/'.$TV->file.'/playlist.m3u8"
 				},{
 				file: "'.$TV->$storageURL.$TV->file.'"
 				}]';
