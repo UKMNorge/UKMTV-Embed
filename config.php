@@ -19,7 +19,7 @@ if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
 				},{
 				file: "http://'.$TV->$storageURL.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
 				},{
-				file: "'.$TV->$storageURL.$TV->file.'"
+				file: "'.$TV->$storageURL.'/'.$TV->file.'"
 				}]';
 } else if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
