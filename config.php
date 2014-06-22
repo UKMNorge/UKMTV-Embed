@@ -11,13 +11,13 @@ $storageURL= 'storageurl'. $TV->activeStorage;
 
 if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
 	$sources = 'sources: [{
-				file: "'.$TV->$storageURL.':1935/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
+				file: "'.$TV->$storageIP.':1935/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
 				},{
-				file: "'.$TV->$storageURL.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
+				file: "'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
 				},{
-				file: "'.$TV->$storageURL.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
+				file: "'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
 				},{
-				file: "'.$TV->$storageURL.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
+				file: "'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
 				},{
 				file: "'.$TV->$storageURL.'/'.$TV->file.'"
 				}]';
