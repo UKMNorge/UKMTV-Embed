@@ -9,7 +9,7 @@ $TV->videofile();
 $storageIP = 'storageIP'.$TV->activeStorage;
 $storageURL= 'storageurl'. $TV->activeStorage;
 
-if($TV->ext == '.mp4' && $TV->activeStorage == '333') {
+if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
 	$sources = 'sources: [{
 		
 				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
