@@ -1,37 +1,25 @@
 <?php
+require_once('UKMconfig.inc.php');
 require_once('UKM/tv.class.php');
 $TV = new tv($_GET['f']);
 $TV->play();
 $TV->size();
 $TV->videofile();
 
-// Calculate current storage IP based on active storage server
-$storageIP = 'storageIP'.$TV->activeStorage;
-$storageURL= 'storageurl'. $TV->activeStorage;
+// Get the IP of a cache we can use to serve the files
+$cacheIP = $TV->getCacheIP();
+$appName = 'ukmtvhttp';
 
-if($TV->ext == '.mp4' && $TV->activeStorage == '2') {
+if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
-		
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
+				file: "rtmp://'.$cacheIP.'/'.$appName.'/_definst_/mp4:ukmvideo/'.$TV->file.'"
 				},{
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
+				file: "http://'.$cacheIP.'/'.$appName.'/_definst_/'.$TV->file.'/playlist.m3u8"
 				},{
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
-				},{
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
-				},{
-				file: "'.$TV->$storageURL.'/'.$TV->file.'"
-				}]';
-} else if($TV->ext == '.mp4') {
-	$sources = 'sources: [{
-				file: "rtmp://'.$TV->$storageIP.'/ukmtv/_definst_/mp4:'.$TV->file.'"
-				},{
-				file: "http://'.$TV->$storageIP.'/ukmtv/_definst_/'.$TV->file.'/playlist.m3u8"
-				},{
-				file: "'.$TV->$storageURL.$TV->file.'"
+				file: "'.$TV->storageurl.$TV->file.'"
 				}]';
 } else {
-	$sources = 'file: "'.$TV->$storageURL.$TV->file.'"';
+	$sources = 'file: "'.$TV->storageurl.$TV->file.'"';
 }
 ?>
 var jwp_height = 562;
@@ -49,8 +37,8 @@ jQuery(document).ready(function(){
 	    height: jwp_calc_height(),
 	    startparam: "starttime",
 	    logo: {
-	        file: 'http://embed.ukm.no/logo/UKMtv_hvit_'+jwp_calc_logo()+'.png',
-	        link: 'http://tv.ukm.no/',
+	        file: 'http://embed.<?= UKM_HOSTNAME ?>/logo/UKMtv_hvit_'+jwp_calc_logo()+'.png',
+	        link: 'http://tv.<?= UKM_HOSTNAME ?>/',
 	        linktarget: '_blank'
         }
 	});
