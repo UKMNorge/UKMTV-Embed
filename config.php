@@ -12,7 +12,7 @@ $appName = 'ukmtvhttp';
 
 if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
-				file: "rtmp://'.$cacheIP.'/'.$appName.'/_definst_/mp4:ukmvideo/'.$TV->file.'"
+				file: "rtmp://'.$cacheIP.'/'.$appName.'/_definst_/mp4:'.$TV->file.'"
 				},{
 				file: "http://'.$cacheIP.'/'.$appName.'/_definst_/'.$TV->file.'/playlist.m3u8"
 				},{
