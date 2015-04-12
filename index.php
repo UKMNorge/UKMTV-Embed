@@ -30,7 +30,7 @@ html {
 if($TV->id) { ?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="http://embed.ukm.no/jwplayer.js"></script>
-	<script language="javascript" src="http://embed.ukm.no/info/<?= $_GET['f'] ?><?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? '?autoplay=true': ''?>"></script>
+	<script language="javascript" src="http://embed.<?php echo UKM_HOSTNAME; ?>/info/<?= $_GET['f'] ?><?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? '?autoplay=true': ''?>"></script>
 <?php } ?>
 <script type="text/javascript">
  
