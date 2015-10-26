@@ -10,6 +10,10 @@ $TV->videofile();
 $cacheIP = $TV->getCacheIP();
 $appName = 'ukmtvhttp';
 
+#if( $_SERVER['HTTP_CF_CONNECTING_IP'] == '81.0.146.162') {
+#	$cacheIP = 'wowza.video.ukm.no';
+#}
+
 if($TV->ext == '.mp4') {
 	$sources = 'sources: [{
 				file: "rtmp://'.$cacheIP.'/'.$appName.'/_definst_/mp4:'.$TV->file.'"
@@ -56,3 +60,4 @@ if(width > 250) {
 }
 return '50';
 }
+//console.log('Playing from <?php echo $cacheIP; ?>');
