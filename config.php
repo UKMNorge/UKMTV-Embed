@@ -14,17 +14,53 @@ $appName = 'ukmtvhttp';
 #	$cacheIP = 'wowza.video.ukm.no';
 #}
 
+$ips_with_manual_cache = array('80.212.165.177','81.0.146.162', '195.204.59.62', '2001:4643:6d12:0:e2:56df:f787:7d3c');
+if( false ) {# in_array( $_SERVER['HTTP_CF_CONNECTING_IP'], $ips_with_manual_cache) || in_array( $_SERVER['REMOTE_ADDR'], $ips_with_manual_cache) ) {
+	echo "console.log('CURRENTLY IN DEBUG MODE FOR IP ". $_SERVER['HTTP_CF_CONNECTING_IP'] ."');";
+	$cacheIP = '109.239.235.85';
+}
+
+if( empty( $cacheIP ) ) {
+	require_once('UKM/mail.class.php');
+	$mail = new UKMmail();
+	$mail->to('support@ukm.no,marius@ukm.no,jardar@ukm.no')
+		 ->subject('UKM-TV CACHE-ERROR')
+		 ->message('Det er for øyeblikket ingen aktive cacher i UKM-TV, som betyr at UKM-TV er nede')
+		 ->ok();
+}
+
+// DET ER EN MP4-FIL (standard)
 if($TV->ext == '.mp4') {
-	$sources = 'sources: [{
+	// DET FINNES EN SMIL-FIL (BÅNDBREDDEVALG)
+	if( 'true' == $TV->file_exists_smil ) {
+		$sources = 'sources: [{
+			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
+			},{
+			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
+			},{
+			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
+			},{
+			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
+			},{
+			file: "'.$TV->storageURL.'/'.$TV->file.'"
+			}]';
+	}
+	// DET FINNES IKKE SMIL-FIL
+	else {
+		$sources = 'sources: [{
 				file: "rtmp://'.$cacheIP.'/'.$appName.'/_definst_/mp4:'.$TV->file.'"
 				},{
 				file: "http://'.$cacheIP.'/'.$appName.'/_definst_/'.$TV->file.'/playlist.m3u8"
 				},{
 				file: "'.$TV->storageurl.$TV->file.'"
 				}]';
-} else {
+	}
+}
+// DET ER IKKE EN MP4-FIL (wow, gammelt)
+else {
 	$sources = 'file: "'.$TV->storageurl.$TV->file.'"';
 }
+
 ?>
 var jwp_height = 562;
 jQuery(document).ready(function(){
@@ -60,4 +96,4 @@ if(width > 250) {
 }
 return '50';
 }
-//console.log('Playing from <?php echo $cacheIP; ?>');
+console.log('Playing from <?php echo $cacheIP; ?> (SMIL <?php echo $TV->file_exists_smil ?>) ');
