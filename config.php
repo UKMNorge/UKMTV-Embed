@@ -42,7 +42,7 @@ if($TV->ext == '.mp4') {
 			},{
 			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.f4m"
 			},{
-			file: "'.$TV->storageURL.'/'.$TV->file.'"
+			file: "'.$TV->storageurl.'/'.$TV->file.'"
 			}]';
 	}
 	// DET FINNES IKKE SMIL-FIL
