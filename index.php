@@ -29,9 +29,9 @@ html {
 <?php
 if($TV->id) { ?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        	<script src="http://embed.ukm.no/jwplayer-7.9.3/jwplayer.js"></script>
+        	<script src="//embed.ukm.no/jwplayer-7.9.3/jwplayer.js"></script>
 		<script>jwplayer.key="O8fn25zm2lKsP+6rv/8DC//tszaOMt9kNWEFwA==";</script>
-	<script language="javascript" src="https://embed.<?php echo UKM_HOSTNAME; ?>/info/<?= $_GET['f'] ?><?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? '?autoplay=true': ''?>"></script>
+	<script language="javascript" src="//embed.<?php echo UKM_HOSTNAME; ?>/info/<?= $_GET['f'] ?><?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? '?autoplay=true': ''?>"></script>
 <?php } ?>
 <script type="text/javascript">
  
