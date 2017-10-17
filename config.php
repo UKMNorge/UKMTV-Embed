@@ -77,7 +77,7 @@ jQuery(document).ready(function(){
 	    height: jwp_calc_height(),
 	    startparam: "starttime",
 	    logo: {
-	        file: 'http://embed.<?= UKM_HOSTNAME ?>/logo/UKMtv_hvit_'+jwp_calc_logo()+'.png',
+	        file: 'https://embed.<?= UKM_HOSTNAME ?>/logo/UKMtv_hvit_'+jwp_calc_logo()+'.png',
 	        link: 'http://tv.<?= UKM_HOSTNAME ?>/',
 	        linktarget: '_blank'
         }
