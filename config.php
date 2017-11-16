@@ -34,9 +34,9 @@ if($TV->ext == '.mp4') {
 	// DET FINNES EN SMIL-FIL (BÅNDBREDDEVALG)
 	if( 'true' == $TV->file_exists_smil ) {
 		$sources = 'sources: [{
-			file: "https://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
+			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
 			},{
-			file: "https://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
+			file: "http://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
 			},{
 			file: "https://videoserver.ukm.no/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
 			},{
