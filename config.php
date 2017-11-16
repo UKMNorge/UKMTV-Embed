@@ -36,7 +36,7 @@ if($TV->ext == '.mp4') {
 		$sources = 'sources: [{
 			file: "https://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/jwplayer.smil"
 			},{
-			file: "https://videoserver.ukm.no/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
+			file: "https://'.$cacheIP.'/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/playlist.m3u8"
 			},{
 			file: "https://videoserver.ukm.no/'.$appName.'/_definst_/smil:'.str_replace('_720p.mp4','.smil', $TV->file).'/manifest.mpd"
 			},{
