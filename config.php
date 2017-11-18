@@ -29,6 +29,8 @@ if( empty( $cacheIP ) ) {
 		 ->ok();
 }
 
+$TV->file = str_replace('///', '/', $TV->file);
+
 // DET ER EN MP4-FIL (standard)
 if($TV->ext == '.mp4') {
 	// DET FINNES EN SMIL-FIL (BÅNDBREDDEVALG)
