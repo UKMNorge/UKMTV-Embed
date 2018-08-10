@@ -23,7 +23,7 @@ if( false ) {# in_array( $_SERVER['HTTP_CF_CONNECTING_IP'], $ips_with_manual_cac
 if( empty( $cacheIP ) ) {
 	require_once('UKM/mail.class.php');
 	$mail = new UKMmail();
-	$mail->to('support@ukm.no,marius@ukm.no,jardar@ukm.no')
+	$mail->to('support@ukm.no,marius@ukm.no')
 		 ->subject('UKM-TV CACHE-ERROR')
 		 ->message('Det er for øyeblikket ingen aktive cacher i UKM-TV, som betyr at UKM-TV er nede')
 		 ->ok();
