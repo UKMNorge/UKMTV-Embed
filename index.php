@@ -1,6 +1,7 @@
 <?php
 
 use UKMNorge\Filmer\UKMTV\Filmer;
+use UKMNorge\Filmer\UKMTV\Server\Server;
 
 require_once('UKM/Autoloader.php');
 
@@ -33,7 +34,7 @@ try {
         <script>
             jwplayer.key = "O8fn25zm2lKsP+6rv/8DC//tszaOMt9kNWEFwA==";
         </script>
-        <script language="javascript" src="//embed.<?php echo UKM_HOSTNAME; ?>/info/<?= $_GET['id'] ?><?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? '?autoplay=true' : '' ?>"></script>
+        <script language="javascript" src="<?php echo Server::getEmbedUrl() ?>info/<?= $film->getId() ?><?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? '?autoplay=true' : '' ?>"></script>
     <?php } ?>
     <script type="text/javascript">
         var _gaq = _gaq || [];
