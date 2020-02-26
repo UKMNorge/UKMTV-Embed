@@ -6,7 +6,7 @@ RewriteBase /
 ### RETURNER CONFIG-FIL
 RewriteCond %{SCRIPT_FILENAME} !-d  
 RewriteCond %{SCRIPT_FILENAME} !-f  
-RewriteRule ^info/(.*)$ config.php?f=$1 [QSA,L]
+RewriteRule ^info/(.*)$ config.php?id=$1 [QSA,L]
 
 ### RETURNER CONFIG-FIL
 RewriteCond %{SCRIPT_FILENAME} !-d  
@@ -16,12 +16,8 @@ RewriteRule ^iframe/(.*)$ code.php?id=$1 [L]
 ### VIS EN GITT VIDEO
 RewriteCond %{SCRIPT_FILENAME} !-d  
 RewriteCond %{SCRIPT_FILENAME} !-f  
-RewriteRule ^([_0-9a-zA-Z-]+)/([0-9]+)/?$ index.php?f=$2 [QSA,L]
+RewriteRule ^([_0-9a-zA-Z-]+)/([0-9]+)/?$ index.php?id=$2 [QSA,L]
 
 RewriteCond %{SCRIPT_FILENAME} !-d  
 RewriteCond %{SCRIPT_FILENAME} !-f  
-RewriteRule ^([0-9]+)?$ index.php?f=$1 [L]
-
-RewriteCond %{SCRIPT_FILENAME} !-d  
-RewriteCond %{SCRIPT_FILENAME} !-f  
-RewriteRule ^(.*)$ index.php?searchfile=$1 [L]
+RewriteRule ^([0-9]+)?$ index.php?id=$1 [L]
