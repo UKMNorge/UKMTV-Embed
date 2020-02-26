@@ -50,7 +50,7 @@ jwplayer('my-video').setup({
 primary: 'flash',
 <?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 title: 'Spill av',
-image: '<?= Server::getStorageUrl() . $film->getImagePath() ?>',
+image: '<?= $film->getBildeUrl() ?>',
 width: '100%',
 height: jwp_calc_height(),
 startparam: "starttime",
