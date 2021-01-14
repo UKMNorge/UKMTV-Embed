@@ -47,7 +47,6 @@ jwplayer('my-video').resize('100%', jwp_calc_height());
 });
 jwplayer('my-video').setup({
 <?= $sources ?>,
-primary: 'flash',
 <?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 title: 'Spill av',
 image: '<?= $film->getBildeUrl() ?>',
