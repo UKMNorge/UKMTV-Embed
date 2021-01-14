@@ -9,36 +9,6 @@ require_once('UKM/Autoloader.php');
 $film = Filmer::getById($_GET['id']);
 $film->play();
 
-// DET ER EN MP4-FIL (standard)
-if (true || $film->harSmil() && $film->getExtension() == '.mp4') {
-    // DET FINNES EN SMIL-FIL (BÅNDBREDDEVALG)
-    // Fordi cachene kun er wowza-apps, og ikke tilgjengeliggjør
-    // filmer via vanlig https:80, er siste utvei direkteadressering til storageserver
-    $sources = 'sources: [{
-        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/jwplayer.smil"
-        },{
-        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/playlist.m3u8"
-        },{
-        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/manifest.mpd"
-        },{
-        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/manifest.f4m"
-        },{
-        file: "' . Server::getStorageUrl() . '/' . $film->getFile() . '" 
-        }]';
-    // DET FINNES IKKE SMIL-FIL
-} elseif ($film->getExtension() == '.mp4') {
-    $sources = 'sources: [{
-            file: "rtmp://' . Server::getCacheUrl(true) . Server::getWowzaAppName() . '/_definst_/mp4:' . $film->getFile() . '"
-            },{
-            file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"
-            },{
-            file: "' . Server::getStorageUrl() . $film->getFile() . '"
-            }]';
-}
-// DET ER IKKE EN MP4-FIL (wow, gammelt)
-else {
-    $sources = 'file: "' . Server::getStorageUrl() . $film->getFile() . '"';
-}
 ?>
 var jwp_height = 562;
 jQuery(document).ready(function(){
@@ -46,7 +16,7 @@ jQuery('#my-video, #my-video_wrapper').bind('resize', function(){
 jwplayer('my-video').resize('100%', jwp_calc_height());
 });
 jwplayer('my-video').setup({
-<?= $sources ?>,
+file: '<?= Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8' ?>',
 <?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 title: 'Spill av',
 image: '<?= $film->getBildeUrl() ?>',
