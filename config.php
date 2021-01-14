@@ -15,8 +15,6 @@ if ($film->harSmil() && $film->getExtension() == '.mp4') {
     // Fordi cachene kun er wowza-apps, og ikke tilgjengeliggjør
     // filmer via vanlig https:80, er siste utvei direkteadressering til storageserver
     $sources = 'sources: [{
-        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/jwplayer.smil"
-        },{
         file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/playlist.m3u8"
         },{
         file: "' . Server::getStorageUrl() . '/' . $film->getFile() . '" 
