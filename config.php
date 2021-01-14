@@ -10,7 +10,7 @@ $film = Filmer::getById($_GET['id']);
 $film->play();
 
 // DET ER EN MP4-FIL (standard)
-if ($film->harSmil() && $film->getExtension() == '.mp4') {
+if (true || $film->harSmil() && $film->getExtension() == '.mp4') {
     // DET FINNES EN SMIL-FIL (BÅNDBREDDEVALG)
     // Fordi cachene kun er wowza-apps, og ikke tilgjengeliggjør
     // filmer via vanlig https:80, er siste utvei direkteadressering til storageserver
