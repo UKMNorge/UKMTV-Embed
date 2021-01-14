@@ -23,6 +23,8 @@ if ($film->harSmil() && $film->getExtension() == '.mp4') {
 } elseif ($film->getExtension() == '.mp4') {
     $sources = 'sources: [{
         file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"
+        },{
+        file: "' . Server::getStorageUrl() . $film->getFile() . '"
         }]';
 }
 // DET ER IKKE EN MP4-FIL (wow, gammelt)
