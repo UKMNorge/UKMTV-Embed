@@ -17,7 +17,7 @@ if (true || $film->harSmil() && $film->getExtension() == '.mp4') {
     $sources = 'sources: [{
         file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/playlist.m3u8"
         },{
-        file: "' . Server::getStorageUrl() . '/' . $film->getFile() . '" 
+        file: "' . Server::getStorageUrl() . $film->getFile() . '" 
         }]';
     // DET FINNES IKKE SMIL-FIL
 } elseif ($film->getExtension() == '.mp4') {
