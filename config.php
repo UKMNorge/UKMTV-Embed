@@ -10,12 +10,24 @@ $film = Filmer::getById($_GET['id']);
 $film->play();
 
 // DET ER EN MP4-FIL (standard)
-if ($film->getExtension() == '.mp4') {
+if ($film->harSmil() && $film->getExtension() == '.mp4') {
+    // DET FINNES EN SMIL-FIL (BÅNDBREDDEVALG)
+    // Fordi cachene kun er wowza-apps, og ikke tilgjengeliggjør
+    // filmer via vanlig https:80, er siste utvei direkteadressering til storageserver
     $sources = 'sources: [{
-            file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"
-            },{
-            file: "' . Server::getStorageUrl() . $film->getFile() . '"
-            }]';
+        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/jwplayer.smil"
+        },{
+        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/playlist.m3u8"
+        },{
+        file: "' . Server::getStorageUrl() . '/' . $film->getFile() . '" 
+        }]';
+    // DET FINNES IKKE SMIL-FIL
+} elseif ($film->getExtension() == '.mp4') {
+    $sources = 'sources: [{
+        file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"
+        },{
+        file: "' . Server::getStorageUrl() . $film->getFile() . '"
+        }]';
 }
 // DET ER IKKE EN MP4-FIL (wow, gammelt)
 else {
