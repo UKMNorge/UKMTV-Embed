@@ -9,6 +9,18 @@ require_once('UKM/Autoloader.php');
 $film = Filmer::getById($_GET['id']);
 $film->play();
 
+// DET ER EN MP4-FIL (standard)
+if ($film->getExtension() == '.mp4') {
+    $sources = 'sources: [{
+            file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"
+            },{
+            file: "' . Server::getStorageUrl() . $film->getFile() . '"
+            }]';
+}
+// DET ER IKKE EN MP4-FIL (wow, gammelt)
+else {
+    $sources = 'file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"';
+}
 ?>
 var jwp_height = 562;
 jQuery(document).ready(function(){
@@ -16,7 +28,7 @@ jQuery('#my-video, #my-video_wrapper').bind('resize', function(){
 jwplayer('my-video').resize('100%', jwp_calc_height());
 });
 jwplayer('my-video').setup({
-file: '<?= Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8' ?>',
+<?= $sources ?>,
 <?= isset($_GET['autoplay']) || isset($_GET['autostart']) ? 'autostart: true,' : '' ?>
 title: 'Spill av',
 image: '<?= $film->getBildeUrl() ?>',
