@@ -22,9 +22,11 @@ if (true || $film->harSmil() && $film->getExtension() == '.mp4') {
     // DET FINNES IKKE SMIL-FIL
 } elseif ($film->getExtension() == '.mp4') {
     $sources = 'sources: [{
-        file: "' . Server::getWowzaUrl() . $film->getFile() . '/playlist.m3u8"
+        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/playlist.m3u8"
         },{
-        file: "' . Server::getStorageUrl() . $film->getFile() . '"
+        file: "' . Server::getWowzaUrl() . 'smil:' . $film->getSmilFile() . '/manifest.mpd"
+        },{
+        file: " https://video.ukm.no:443/' . $film->getFile() . '" 
         }]';
 }
 // DET ER IKKE EN MP4-FIL (wow, gammelt)
